@@ -38,4 +38,22 @@ sum(fs1-fs2>eps)
 
 
 
+%program 13-14
+dirname = 'TrainingImages/FACES';
+dinfo4 = load('DebugInfo/debuginfo4.mat');
+ni = dinfo4.ni;
+all_ftypes = dinfo4.all_ftypes;
+im_sfn = 'FaceData.mat';
+f_sfn = 'FeaturesToMat.mat';
+stream = RandStream('mt19937ar','seed', dinfo4.jseed);
+RandStream.setDefaultStream(stream);
+LoadSaveImData(dirname, ni, im_sfn);
+ComputeSaveFData(all_ftypes, f_sfn);
+
+facedata = load(im_sfn);
+feattomat = load(f_sfn);
+sl1 = sum(sum(abs(dinfo4.ii_ims - facedata.ii_ims) >eps))
+sl2 = sum(sum(abs(dinfo4.fmat - feattomat.fmat) >eps))
+
+
 
