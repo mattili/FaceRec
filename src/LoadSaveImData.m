@@ -3,7 +3,9 @@ function LoadSaveImData(dirname, ni, im_sfn)
     face_fnames = dir(dirname);
     aa = 3:length(face_fnames);
     a = randperm(length(aa));
+    
     fnums = aa(a(1:ni));
+    
     
     im = imread([dirname,'/',face_fnames(fnums(3)).name]);
     [h,w] = size(im);
