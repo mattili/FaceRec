@@ -1,9 +1,19 @@
 eps = 1e-06;
-%program 1
+%Debug point 1
 [im,ii_im] = LoadIm('TrainingImages/FACES/face00001.bmp');
 dinfo1 = load('DebugInfo/debuginfo1.mat');
-s1 = sum(abs(dinfo1.im(:) - im(:)) >eps)
-s2 = sum(abs(dinfo1.ii_im(:) - ii_im(:)) >eps)
+dp1 = sum(abs(dinfo1.im(:) - im(:)) >eps)
+dp1 = sum(abs(dinfo1.ii_im(:) - ii_im(:)) >eps)
+colormap(gray)
+imagesc(ii_im)
+%Debug point 2
+dinfo2 = load('DebugInfo/debuginfo2.mat');
+x = dinfo2.x; y = dinfo2.y; w = dinfo2.w; h = dinfo2.h;
+dp2 = abs(dinfo2.f1 - FeatureTypeI(ii_im, x, y, w, h)) > eps
+dp2 = abs(dinfo2.f2 - FeatureTypeII(ii_im, x, y, w, h)) > eps
+dp2 = abs(dinfo2.f3 - FeatureTypeIII(ii_im, x, y, w, h)) > eps
+dp2 = abs(dinfo2.f4 - FeatureTypeIV(ii_im, x, y, w, h)) > eps
+
 
 
 
@@ -15,6 +25,7 @@ ii_ims1 = cell(ni, 1);
 addpath('TrainingImages/test');
 
 
+
 W = 19;
 H = 19;
 
@@ -24,12 +35,15 @@ fmat = VecAllFeatures(all_ftypes,W,H);
 ii_ims = zeros(ni,W*H);
 for i=1:ni
     [a,b] = LoadIm(im_files(i).name);
-    ii_ims(i,:) = b(:);
+    ii_ims(i,:) = b(:)';
     ii_ims1{i} = b;     
 end
 
 
-
+%Debug point 3
+dinfo3 = load('DebugInfo/debuginfo3.mat');
+ftype = dinfo3.ftype;
+dp3 = sum(abs(dinfo3.fs - ComputeFeature(ii_ims1, ftype)) > eps)
 
 %program 12 
 fs1 = VecComputeFeature(ii_ims, fmat(:, 1));
@@ -40,6 +54,7 @@ sum(fs1-fs2>eps)
 
 %program 13-14
 dirname = 'TrainingImages/FACES';
+% debug point 4
 dinfo4 = load('DebugInfo/debuginfo4.mat');
 ni = dinfo4.ni;
 all_ftypes = dinfo4.all_ftypes;

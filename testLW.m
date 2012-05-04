@@ -9,3 +9,10 @@ theta
 p
 err
 
+[ap bp] = hist(fs(y==1),10);
+[an bn] = hist(fs(y==0),10);
+
+clf
+plot(bp,ap/sum(ap),'g')
+hold on
+plot(bn,an/sum(an),'r');
