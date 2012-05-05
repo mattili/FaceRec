@@ -61,14 +61,15 @@ function ComputeROC(Cparams, Fdata, NFdata)
 
         tpr(i) = ntp/(ntp+nfn);
         fpr(i) = nfp/(ntn+nfp);
-        if tpr(i) > 0.7 && ~found
+        if tpr(i) < 0.7 && ~found
             Cparams.thresh = theta;
-            found = 1;
+            found = 1;   
         end
     
     end
     axis([-0.01,1.01,0,1.01])
     plot(fpr,tpr)
+    Cparams.thresh
     
     
     
