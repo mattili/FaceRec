@@ -9,7 +9,7 @@ function ComputeROC(Cparams, Fdata, NFdata)
     test_im_num = setdiff(aa,Fdata.fnums);    
     ni = length(test_im_num);
     
-    face_training = cell(ni, 1);
+    face_training = cell(ni, 1); % Really test .. :)
     
     for i = 1:ni
         im_fname = [Fdata.dirname, '/', face_fnames( test_im_num(i) ).name];
@@ -69,8 +69,6 @@ function ComputeROC(Cparams, Fdata, NFdata)
     end
     axis([-0.01,1.01,0,1.01])
     plot(fpr,tpr)
-    Cparams.thresh
-    
-    
+    Cparams.thresh    
     
 end

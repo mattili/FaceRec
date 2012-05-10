@@ -3,8 +3,7 @@ function sc = ApplyDetector(Cparams, ii_im, sigma,my)
         sigma = 1.0;
         my = 1.0;
     end
-    
-    fs = ii_im(:)'*Cparams.fmat(:,Cparams.Thetas(:,1) ) ;    
+        
     fs = zeros(1,size(Cparams.Thetas,1));
     for i = 1 : size(Cparams.Thetas,1)
         idx = Cparams.Thetas(i,1);
