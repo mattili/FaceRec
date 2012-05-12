@@ -1,0 +1,14 @@
+
+	BoostingAlg		
+
+* orginal(med sparse)									52
+* Extraherat w(:,i) till tmp_w för att slippa ta ut w(:,i) j ggr.		48
+* Förberäkna all fs; all_im*fmat						40.7
+* Extraherad ifsats i j-loopen, beräkna minerr efteråt				40.2
+* inlinat h funktion								34.5
+
+	ScanFixed
+* orginal									40.9
+* inlinat h									37.5
+
+

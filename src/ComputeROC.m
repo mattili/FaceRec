@@ -67,8 +67,9 @@ function ComputeROC(Cparams, Fdata, NFdata)
         end
     
     end
-    axis([-0.01,1.01,0,1.01])
+   
     plot(fpr,tpr)
+    axis([-0.01,1.01,0,1.01])
     Cparams.thresh    
     
 end

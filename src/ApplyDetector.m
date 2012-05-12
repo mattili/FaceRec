@@ -4,16 +4,13 @@ function sc = ApplyDetector(Cparams, ii_im, sigma,my)
         my = 1.0;
     end
         
-    fs = zeros(1,size(Cparams.Thetas,1));
-    for i = 1 : size(Cparams.Thetas,1)
-        idx = Cparams.Thetas(i,1);
-        fs(i) = ii_im(:)'*Cparams.fmat(:,idx);
-        if Cparams.all_ftypes(idx,1) == 3
-             fs(i) = fs(i) + 19*19*my;            
-        end
-        fs(i) = fs(i)./sigma;
-    end
     
-    sc = Cparams.alphas'*h(fs, Cparams.Thetas(:,3)',Cparams.Thetas(:,2)')';    
+    im = ii_im(:)';    
+    idxs = Cparams.Thetas(:,1);    
+    fs = im*Cparams.fmat(:,idxs);    
+    fs = fs + 19*19*my*(Cparams.all_ftypes(idxs,1) == 3)';      
+    fs = fs./sigma;
+    
+    sc = Cparams.alphas'*(Cparams.Thetas(:,3)'.*fs < Cparams.Thetas(:,3)'.*Cparams.Thetas(:,2)')';    
 end
 
