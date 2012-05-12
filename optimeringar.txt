@@ -9,6 +9,7 @@
 
 	ScanFixed
 * orginal									40.9
-* inlinat h									37.5
+* inlinat h(i applyDetector)							37.5
+* Vektoriserat applyDetector.tagit bort for					15
 
 
