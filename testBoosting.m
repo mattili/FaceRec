@@ -3,8 +3,7 @@ function testBoosting(T,Fdata,NFdata,FTdata)
     if 0
         Cparams = BoostingAlg(Fdata, NFdata, FTdata, T);    
     else
-        apa = load('cpar');
-        Cparams = apa.Cparams;
+        load('cpar');        
     end
     
     
